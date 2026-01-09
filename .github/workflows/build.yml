@@ -3,7 +3,7 @@ name: Build
 on:
   push:
     branches:
-      - "Drv-k8s"
+      - "Dev-k8s"
 
 jobs:
   Build:
