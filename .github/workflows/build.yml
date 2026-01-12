@@ -47,4 +47,17 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+          annotations: ${{ steps.meta.outputs.annotations }}
         timeout-minutes: 10
+
+      - name: Notify Slack about workflow status
+        uses: rtCamp/action-slack-notify@v2
+        if: always()
+        env:
+          SLACK_WEBHOOK: https://hooks.slack.com/services/${{ secrets.SLACK_WEBHOOK_TOKEN }}
+          SLACK_USERNAME: workflow-status
+          SLACK_ICON: https://avatars.githubusercontent.com/u/25347574
+          SLACK_COLOR: ${{ job.status }}
+          SLACK_FOOTER: ${{ github.repository }}
+          SLACK_MESSAGE: "Build workflow run *${{ job.status }}*"
+        timeout-minutes: 5
