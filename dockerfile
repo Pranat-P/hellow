@@ -9,8 +9,5 @@ COPY nginx.conf /etc/nginx/nginx.conf
 # Copy static HTML
 COPY index.html /usr/share/nginx/html/index.html
 
-# Expose HTTP port
-EXPOSE 80
-
 # Start nginx
 CMD ["nginx", "-g", "daemon off;"]
