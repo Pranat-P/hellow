@@ -1,11 +1,16 @@
 FROM nginx:alpine
 
-# Remove default nginx content
-RUN rm -rf /usr/share/nginx/html/*
+# Remove default nginx config and html
+RUN rm -rf /etc/nginx/nginx.conf /usr/share/nginx/html/*
 
-# Copy our html
+# Copy custom nginx config
+COPY nginx.conf /etc/nginx/nginx.conf
+
+# Copy static HTML
 COPY index.html /usr/share/nginx/html/index.html
 
+# Expose HTTP port
 EXPOSE 80
 
+# Start nginx
 CMD ["nginx", "-g", "daemon off;"]
