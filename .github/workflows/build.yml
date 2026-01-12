@@ -8,7 +8,7 @@ on:
 jobs:
   Build:
     runs-on:
-      - medvista-runner
+      - medvista-runner-11
 
     env:
       AWS_ACCESS_KEY_ID: ${{ vars.AWS_ACCESS_KEY_ID }}
